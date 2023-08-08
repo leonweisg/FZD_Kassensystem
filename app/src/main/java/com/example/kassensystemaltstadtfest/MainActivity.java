@@ -1,7 +1,9 @@
 package com.example.kassensystemaltstadtfest;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,13 +12,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private int[] clickCountArray = new int[14];
     private float[] productPrices = new float[14];
+    private float[] pfandPrices = new float[14];
     private float pfandRueckgabeValue1 = 0;
     private float pfandRueckgabeValue2 = 0;
+    private float gesamt = 0;
     private int pfand1Counter = 0;
     private int pfand2Counter = 0;
     private LinearLayout linearLayoutForProducts;
@@ -32,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtGesamt = findViewById(R.id.txt_gesamt);
-        txtPfand = findViewById(R.id.txt_pfand);
         setStatusBarColor();
         initSettingsButton();
         loadFromSharedPreferences();
@@ -61,21 +65,29 @@ public class MainActivity extends AppCompatActivity {
         });
         reloadButton = findViewById(R.id.btn_reload);
         reloadButton.setOnClickListener(v -> {
-            reloadEverything();
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Bestellung abbrechen")
+                    .setMessage("Sind Sie sicher, dass Sie die Bestellung abbrechen möchten?")
+                    .setPositiveButton("Ja", (dialog, which) -> reloadEverything())
+                    .setNegativeButton("Nein", null)
+                    .show();
+        });
+        Button bezahlen = findViewById(R.id.btn_bezahlen);
+        bezahlen.setOnClickListener(v -> {
+            if(gesamt == 0) {
+                Toast.makeText(this, "Noch kein Produkt hinzugefügt.", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(this, BezahlenActivity.class);
+                intent.putExtra("gesamt", gesamt);
+                startActivity(intent);
+            }
         });
     }
 
     private void reloadEverything() {
-        pfand1.setText("1,00 €");
-        pfand2.setText("2,00 €");
-        pfand1Counter = 0;
-        pfand2Counter = 0;
-        pfandRueckgabeValue1 = 0;
-        pfandRueckgabeValue2 = 0;
-        linearLayoutForProducts.removeAllViews();
-        for (int i = 1; i <= 14; i++) {
-            clickCountArray[i] = 0;
-        }
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void pfandRueckgabe1() {
@@ -83,13 +95,8 @@ public class MainActivity extends AppCompatActivity {
         pfand1Counter++;
         String eintrag = pfand1Counter + "x 1,00 €";
         pfand1.setText(eintrag);
-        reloadGesamtPfand();
-    }
-
-    private void reloadGesamtPfand() {
-        String pfand = String.valueOf(pfandRueckgabeValue1 + pfandRueckgabeValue2);
-        String eintrag = pfand + "0 €";
-        txtPfand.setText(eintrag);
+        gesamt -= 1;
+        reloadGesamt();
     }
 
     private void pfandRueckgabe2() {
@@ -97,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
         pfand2Counter++;
         String eintrag = pfand1Counter + "x 2,00 €";
         pfand2.setText(eintrag);
-        reloadGesamtPfand();
+        gesamt -=2;
+        reloadGesamt();
     }
 
     private void loadProductPrices() {
@@ -105,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 14; i++) {
             String productPriceKey = "product_price_" + (i + 1);
             productPrices[i] = sharedPreferences.getFloat(productPriceKey, 0.0f);
+            String productPfandKey = "product_pfand_" + (i + 1);
+            pfandPrices[i] = sharedPreferences.getFloat(productPfandKey, 0.0f);
         }
     }
 
@@ -112,15 +122,16 @@ public class MainActivity extends AppCompatActivity {
         clickCountArray[buttonIndex]++; // Erhöhe den Klickzähler für den entsprechenden Button
         int clickCount = clickCountArray[buttonIndex];
 
+
         if (productTextViews[buttonIndex] != null) {
             // Wenn bereits ein TextView für den Button vorhanden ist, aktualisiere nur den Text
-            float totalPrice = clickCount * productPrices[buttonIndex];
-            String productEntry = clickCount + "x " + productName + " " + totalPrice + " €";
+            Float totalPrice = clickCount * productPrices[buttonIndex];
+            String productEntry = clickCount + "x " + productName + " " + totalPrice + "0 €";
             productTextViews[buttonIndex].setText(productEntry);
         } else {
             // Wenn noch kein TextView für den Button vorhanden ist, füge ein neues hinzu
-            float totalPrice = clickCount * productPrices[buttonIndex];
-            String productEntry = clickCount + "x " + productName + " " + totalPrice + " €";
+            Float totalPrice = clickCount * productPrices[buttonIndex];
+            String productEntry = clickCount + "x " + productName + " " + totalPrice + "0 €";
             TextView entryTextView = new TextView(this);
             entryTextView.setTextColor(getColor(R.color.black));
             entryTextView.setTextSize(18);
@@ -128,6 +139,18 @@ public class MainActivity extends AppCompatActivity {
             linearLayoutForProducts.addView(entryTextView);
             productTextViews[buttonIndex] = entryTextView;
         }
+        addPrice(productPrices[buttonIndex], pfandPrices[buttonIndex]);
+    }
+
+    private void addPrice(float totalPrice, float pfand){
+        gesamt += totalPrice;
+        gesamt += pfand;
+        reloadGesamt();
+    }
+
+    private void reloadGesamt() {
+        String eintrag = gesamt + "0 €";
+        txtGesamt.setText(eintrag);
     }
 
 

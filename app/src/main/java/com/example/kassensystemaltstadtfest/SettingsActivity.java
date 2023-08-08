@@ -73,6 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void loadFromSharedPreferences() {
+
         SharedPreferences sharedPreferences = getSharedPreferences("product_data", MODE_PRIVATE);
 
         LinearLayout scrollViewLayout = findViewById(R.id.scrollViewSettings);
@@ -107,6 +108,7 @@ public class SettingsActivity extends AppCompatActivity {
                 int selectedPositionPfand = (int) (productPfand * 2.0f - 1);
                 productPriceSpinner.setSelection(selectedPosition);
                 productPfandSpinner.setSelection(selectedPositionPfand);
+
 
                 // Add the product layout to the main ScrollView layout
                 scrollViewLayout.addView(productLayout);
