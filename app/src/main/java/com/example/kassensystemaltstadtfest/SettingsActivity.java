@@ -28,6 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         loadFromSharedPreferences();
         initBackButton();
+        setStatusBarColor();
     }
 
     private void initBackButton() {
@@ -81,7 +82,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         LayoutInflater inflater = LayoutInflater.from(this);
 
-        for (int i = 1; i <= 14; i++) {
+        for (int i = 1; i <= 8; i++) {
             String productNameKey = "product_name_" + i;
             String productPriceKey = "product_price_" + i;
             String productPfandKey = "product_pfand_" + i;
@@ -104,8 +105,8 @@ public class SettingsActivity extends AppCompatActivity {
 
                 // Set values for the views
                 productNameEditText.setText(productName);
-                int selectedPosition = (int) (productPrice * 2.0f - 1);
-                int selectedPositionPfand = (int) (productPfand * 2.0f - 1);
+                int selectedPosition = (int) (productPrice * 2.0f);
+                int selectedPositionPfand = (int) (productPfand * 2.0f);
                 productPriceSpinner.setSelection(selectedPosition);
                 productPfandSpinner.setSelection(selectedPositionPfand);
 
@@ -114,6 +115,13 @@ public class SettingsActivity extends AppCompatActivity {
                 scrollViewLayout.addView(productLayout);
             }
         }
+    }
+
+    private void setStatusBarColor() {
+        View decorView = getWindow().getDecorView();
+        int flags = decorView.getSystemUiVisibility();
+        flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        decorView.setSystemUiVisibility(flags);
     }
 
 

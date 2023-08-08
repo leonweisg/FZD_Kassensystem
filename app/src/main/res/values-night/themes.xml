@@ -5,5 +5,14 @@
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
         <item name="android:statusBarColor">#F6F6EE</item>
         <item name="materialButtonStyle">@style/Widget.AppCompat.Button</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerTextStyle</item>
     </style>
+
+    <style name="Theme.KassensystemAltstadtfest" parent="Base.Theme.KassensystemAltstadtfest" />
+
+    <!-- Stil für Spinner-Textfarbe -->
+    <style name="SpinnerTextStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textColor">@color/black</item> <!-- Hier die gewünschte Textfarbe, z.B. schwarz -->
+    </style>
+
 </resources>

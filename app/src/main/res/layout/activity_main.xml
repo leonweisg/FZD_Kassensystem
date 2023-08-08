@@ -98,8 +98,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -108,7 +106,7 @@
 
                     <TextView
                         android:id="@+id/textView"
-                        android:layout_weight="0.4"
+                        android:layout_weight="0.35"
                         android:layout_width="0dp"
                         android:fontFamily="@font/regular"
                         android:textSize="18sp"
@@ -120,7 +118,7 @@
                     <Button
                         android:id="@+id/btn_pfand_rueckgabe_1"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="55dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.2"
@@ -131,7 +129,7 @@
                     <Button
                         android:id="@+id/btn_pfand_rueckgabe_2"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="55dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.2"
@@ -150,7 +148,7 @@
                     <Button
                         android:id="@+id/btn_product_1"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
@@ -161,7 +159,7 @@
                     <Button
                         android:id="@+id/btn_product_2"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
@@ -180,7 +178,7 @@
                     <Button
                         android:id="@+id/btn_product_3"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
@@ -191,7 +189,7 @@
                     <Button
                         android:id="@+id/btn_product_4"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
@@ -210,7 +208,7 @@
                     <Button
                         android:id="@+id/btn_product_5"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
@@ -221,7 +219,7 @@
                     <Button
                         android:id="@+id/btn_product_6"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
@@ -240,7 +238,7 @@
                     <Button
                         android:id="@+id/btn_product_7"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
@@ -251,7 +249,7 @@
                     <Button
                         android:id="@+id/btn_product_8"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
@@ -261,95 +259,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btn_product_9"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/button_background"
-                        android:text="Produkt 9"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/btn_product_10"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/button_background"
-                        android:text="Produkt 10"
-                        android:textColor="@color/white" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btn_product_11"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/button_background"
-                        android:text="Produkt 11"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/btn_product_12"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/button_background"
-                        android:text="Produkt 12"
-                        android:textColor="@color/white" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btn_product_13"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/button_background"
-                        android:text="Produkt 13"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/btn_product_14"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/button_background"
-                        android:text="Produkt 14"
-                        android:textColor="@color/white" />
-
-                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

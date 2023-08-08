@@ -1,6 +1,7 @@
 <!-- res/values/arrays.xml -->
 <resources>
     <string-array name="price_options">
+        <item>0,00 €</item>
         <item>0,50 €</item>
         <item>1,00 €</item>
         <item>1,50 €</item>

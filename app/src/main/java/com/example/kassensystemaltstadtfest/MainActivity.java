@@ -16,16 +16,16 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int[] clickCountArray = new int[14];
-    private float[] productPrices = new float[14];
-    private float[] pfandPrices = new float[14];
+    private int[] clickCountArray = new int[8];
+    private float[] productPrices = new float[8];
+    private float[] pfandPrices = new float[8];
     private float pfandRueckgabeValue1 = 0;
     private float pfandRueckgabeValue2 = 0;
     private float gesamt = 0;
     private int pfand1Counter = 0;
     private int pfand2Counter = 0;
     private LinearLayout linearLayoutForProducts;
-    private TextView[] productTextViews = new TextView[14];
+    private TextView[] productTextViews = new TextView[8];
     private TextView txtGesamt, txtPfand;
     private Button pfand1, pfand2;
     private ImageButton reloadButton;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         loadProductPrices();
 
         // Füge einen Click-Listener zu jedem Button hinzu
-        for (int i = 1; i <= 14; i++) {
+        for (int i = 1; i <= 8; i++) {
             String buttonId = "btn_product_" + i;
             int resourceId = getResources().getIdentifier(buttonId, "id", getPackageName());
             Button button = findViewById(resourceId);
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadProductPrices() {
         SharedPreferences sharedPreferences = getSharedPreferences("product_data", MODE_PRIVATE);
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 8; i++) {
             String productPriceKey = "product_price_" + (i + 1);
             productPrices[i] = sharedPreferences.getFloat(productPriceKey, 0.0f);
             String productPfandKey = "product_pfand_" + (i + 1);
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadFromSharedPreferences() {
         SharedPreferences sharedPreferences = getSharedPreferences("product_data", MODE_PRIVATE);
 
-        for (int i = 1; i <= 14; i++) {
+        for (int i = 1; i <= 8; i++) {
             String productName = sharedPreferences.getString("product_name_" + i, "");
             int buttonId = getResources().getIdentifier("btn_product_" + i, "id", getPackageName());
             Button button = findViewById(buttonId);
