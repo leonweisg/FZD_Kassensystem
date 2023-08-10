@@ -1,5 +1,7 @@
 package com.example.kassensystemaltstadtfest;
 
+import static com.example.kassensystemaltstadtfest.Constants.ANZ_PRODUKTE;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,16 +19,16 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int[] clickCountArray = new int[8];
-    private float[] productPrices = new float[8];
-    private float[] pfandPrices = new float[8];
+    private int[] clickCountArray = new int[ANZ_PRODUKTE];
+    private float[] productPrices = new float[ANZ_PRODUKTE];
+    private float[] pfandPrices = new float[ANZ_PRODUKTE];
     private float pfandRueckgabeValue1 = 0;
     private float pfandRueckgabeValue2 = 0;
     private float gesamt = 0;
     private int pfand1Counter = 0;
     private int pfand2Counter = 0;
     private LinearLayout linearLayoutForProducts;
-    private TextView[] productTextViews = new TextView[8];
+    private TextView[] productTextViews = new TextView[ANZ_PRODUKTE];
     private TextView txtGesamt, txtPfand;
     private Button pfand1, pfand2;
     private ImageButton reloadButton;
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         loadProductPrices();
 
         // Füge einen Click-Listener zu jedem Button hinzu
-        for (int i = 1; i <= 8; i++) {
+        for (int i = 1; i <= ANZ_PRODUKTE; i++) {
             String buttonId = "btn_product_" + i;
             int resourceId = getResources().getIdentifier(buttonId, "id", getPackageName());
             Button button = findViewById(resourceId);
@@ -75,7 +78,16 @@ public class MainActivity extends AppCompatActivity {
         Button bezahlen = findViewById(R.id.btn_bezahlen);
         bezahlen.setOnClickListener(v -> {
             if(gesamt == 0) {
-                Toast.makeText(this, "Noch kein Produkt hinzugefügt.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Noch kein Produkt hinzugefügt.", Toast.LENGTH_SHORT).show();
+                LayoutInflater inflater = getLayoutInflater();
+                View toastLayout = inflater.inflate(R.layout.custom_toast_layout, null);
+
+                Toast toast = new Toast(getApplicationContext());
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setView(toastLayout);
+                toast.show();
+
+
             } else {
                 Intent intent = new Intent(this, BezahlenActivity.class);
                 intent.putExtra("gesamt", gesamt);
@@ -102,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     private void pfandRueckgabe2() {
         pfandRueckgabeValue2 -= 2;
         pfand2Counter++;
-        String eintrag = pfand1Counter + "x 2,00 €";
+        String eintrag = pfand2Counter + "x 2,00 €";
         pfand2.setText(eintrag);
         gesamt -=2;
         reloadGesamt();
@@ -110,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadProductPrices() {
         SharedPreferences sharedPreferences = getSharedPreferences("product_data", MODE_PRIVATE);
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < ANZ_PRODUKTE; i++) {
             String productPriceKey = "product_price_" + (i + 1);
             productPrices[i] = sharedPreferences.getFloat(productPriceKey, 0.0f);
             String productPfandKey = "product_pfand_" + (i + 1);
@@ -165,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadFromSharedPreferences() {
         SharedPreferences sharedPreferences = getSharedPreferences("product_data", MODE_PRIVATE);
 
-        for (int i = 1; i <= 8; i++) {
+        for (int i = 1; i <= ANZ_PRODUKTE; i++) {
             String productName = sharedPreferences.getString("product_name_" + i, "");
             int buttonId = getResources().getIdentifier("btn_product_" + i, "id", getPackageName());
             Button button = findViewById(buttonId);

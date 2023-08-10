@@ -122,6 +122,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.2"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:background="@drawable/button_background"
                         android:text="1,00 €"
                         android:textColor="@color/white" />
@@ -133,6 +135,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.2"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:background="@drawable/button_background"
                         android:text="2,00 €"
                         android:textColor="@color/white" />
@@ -152,6 +156,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:background="@drawable/button_background"
                         android:text="Produkt 1"
                         android:textColor="@color/white" />
@@ -162,6 +168,8 @@
                         android:layout_height="70dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:layout_weight="0.5"
                         android:background="@drawable/button_background"
                         android:text="Produkt 2"
@@ -181,6 +189,8 @@
                         android:layout_height="70dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:layout_weight="0.5"
                         android:background="@drawable/button_background"
                         android:text="Produkt 3"
@@ -193,6 +203,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:background="@drawable/button_background"
                         android:text="Produkt 4"
                         android:textColor="@color/white" />
@@ -209,6 +221,8 @@
                         android:id="@+id/btn_product_5"
                         android:layout_width="0dp"
                         android:layout_height="70dp"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
@@ -223,6 +237,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:background="@drawable/button_background"
                         android:text="Produkt 6"
                         android:textColor="@color/white" />
@@ -242,6 +258,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:background="@drawable/button_background"
                         android:text="Produkt 7"
                         android:textColor="@color/white" />
@@ -253,8 +271,43 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="0.5"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:background="@drawable/button_background"
                         android:text="Produkt 8"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_product_9"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.5"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:background="@drawable/button_background"
+                        android:text="Produkt 9"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btn_product_10"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.5"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:background="@drawable/button_background"
+                        android:text="Produkt 10"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -268,7 +321,7 @@
     <LinearLayout
         android:id="@+id/txt_gesamt_pfand"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_margin="10dp"
         android:background="@drawable/rounded_background"
         android:gravity="center"

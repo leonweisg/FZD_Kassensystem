@@ -1,5 +1,7 @@
 package com.example.kassensystemaltstadtfest;
 
+import static com.example.kassensystemaltstadtfest.Constants.ANZ_PRODUKTE;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -82,7 +84,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         LayoutInflater inflater = LayoutInflater.from(this);
 
-        for (int i = 1; i <= 8; i++) {
+        for (int i = 1; i <= ANZ_PRODUKTE; i++) {
             String productNameKey = "product_name_" + i;
             String productPriceKey = "product_price_" + i;
             String productPfandKey = "product_pfand_" + i;
