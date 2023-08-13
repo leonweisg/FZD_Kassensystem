@@ -12,8 +12,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private Button pfand1, pfand2;
     private ImageButton reloadButton;
 
+    private String[] defaultArray = new String[ANZ_PRODUKTE];
+    private float[] defaultProductPrices = new float[ANZ_PRODUKTE];
+    private float[] defaultPfandPrices = new float[ANZ_PRODUKTE];
 
 
     @Override
@@ -40,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtGesamt = findViewById(R.id.txt_gesamt);
+        firstLoadDefault();
         setStatusBarColor();
         initSettingsButton();
         loadFromSharedPreferences();
@@ -77,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });
         Button bezahlen = findViewById(R.id.btn_bezahlen);
         bezahlen.setOnClickListener(v -> {
-            if(gesamt == 0) {
+            if (gesamt == 0) {
                 //Toast.makeText(this, "Noch kein Produkt hinzugefügt.", Toast.LENGTH_SHORT).show();
                 LayoutInflater inflater = getLayoutInflater();
                 View toastLayout = inflater.inflate(R.layout.custom_toast_layout, null);
@@ -94,6 +100,61 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void firstLoadDefault() {
+        SharedPreferences loadingPreferences = getSharedPreferences("initApp", MODE_PRIVATE);
+        boolean initialized = loadingPreferences.getBoolean("initialized", false);
+        SharedPreferences sharedPreferences = getSharedPreferences("product_data", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (!initialized) {
+            defaultArray[0] = "Bier";
+            defaultProductPrices[0] = 3.5f;
+            defaultPfandPrices[0] = 1f;
+            defaultArray[1] = "Weizen";
+            defaultProductPrices[1] = 5f;
+            defaultPfandPrices[1] = 2f;
+            defaultArray[2] = "Hugo";
+            defaultProductPrices[2] = 3.5f;
+            defaultPfandPrices[2] = 2f;
+            defaultArray[3] = "Wein";
+            defaultProductPrices[3] = 4f;
+            defaultPfandPrices[3] = 2f;
+            defaultArray[4] = "Alk. Mixgetr.";
+            defaultProductPrices[4] = 5f;
+            defaultPfandPrices[4] = 1f;
+            defaultArray[5] = "Williams Birne";
+            defaultProductPrices[5] = 2f;
+            defaultPfandPrices[5] = 0f;
+            defaultArray[6] = "Guido/Hubertus/Heydt";
+            defaultProductPrices[6] = 2f;
+            defaultPfandPrices[6] = 0f;
+            defaultArray[7] = "Kurze";
+            defaultProductPrices[7] = 1.5f;
+            defaultPfandPrices[7] = 0f;
+            defaultArray[8] = "Cola, Wasser";
+            defaultProductPrices[8] = 2.5f;
+            defaultPfandPrices[8] = 1f;
+            defaultArray[9] = "Jägermeister Kurze";
+            defaultProductPrices[9] = 2f;
+            defaultPfandPrices[9] = 0f;
+
+            for (int i = 0; i < ANZ_PRODUKTE; i++) {
+                String productNameKey = "product_name_" + (i + 1);
+                String productPriceKey = "product_price_" + (i + 1);
+                String productPfandKey = "product_pfand_" + (i + 1);
+                editor.putString(productNameKey, defaultArray[i]);
+                editor.putFloat(productPriceKey, defaultProductPrices[i]);
+                editor.putFloat(productPfandKey, defaultPfandPrices[i]);
+            }
+
+            editor.apply();
+
+            SharedPreferences.Editor editorLoading = loadingPreferences.edit();
+            editorLoading.putBoolean("initialized", true);
+            editorLoading.apply();
+        }
+
     }
 
     private void reloadEverything() {
@@ -116,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         pfand2Counter++;
         String eintrag = pfand2Counter + "x 2,00 €";
         pfand2.setText(eintrag);
-        gesamt -=2;
+        gesamt -= 2;
         reloadGesamt();
     }
 
@@ -154,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         addPrice(productPrices[buttonIndex], pfandPrices[buttonIndex]);
     }
 
-    private void addPrice(float totalPrice, float pfand){
+    private void addPrice(float totalPrice, float pfand) {
         gesamt += totalPrice;
         gesamt += pfand;
         reloadGesamt();
